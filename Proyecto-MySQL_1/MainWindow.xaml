@@ -5,20 +5,65 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Proyecto_MySQL_1"
         mc:Ignorable="d"
-        Title="Consulta Alquileres por Empleado" Height="250" Width="400">
-	<Grid Margin="20">
-		<StackPanel VerticalAlignment="Center">
-			<Label Content="Seleccione Empleado (Staff):" FontWeight="Bold"/>
-			<ComboBox x:Name="cmbEmpleados"
-                      SelectionChanged="cmbEmpleados_SelectionChanged"
-                      Margin="0,0,0,15" Height="30"/>
+        Title="Gestión de Empleados - Sakila" Height="500" Width="750"
+        WindowStartupLocation="CenterScreen">
 
-			<Label Content="Total de Alquileres Realizados:" FontWeight="Bold"/>
-			<TextBox x:Name="txtTotalAlquileres"
-                     IsReadOnly="True"
-                     Height="30"
-                     VerticalContentAlignment="Center"
-                     Padding="5,0,0,0"/>
-		</StackPanel>
-	</Grid>
+    <!-- Único Grid contenedor principal -->
+    <Grid Margin="20">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Columna Izquierda: Consulta de Alquileres -->
+        <StackPanel Grid.Column="0" VerticalAlignment="Top">
+            <TextBlock Text="Alquileres por Empleado" FontWeight="Bold" FontSize="14" Margin="0,0,0,15"/>
+            <Label Content="Seleccione Empleado (Staff):" FontWeight="SemiBold"/>
+            <ComboBox x:Name="cmbEmpleados" SelectionChanged="cmbEmpleados_SelectionChanged" Margin="0,0,0,15" Height="28"/>
+
+            <Label Content="Total de Alquileres Realizados:" FontWeight="SemiBold"/>
+            <TextBox x:Name="txtTotalAlquileres" IsReadOnly="True" Height="28" VerticalContentAlignment="Center" Padding="5,0,0,0"/>
+        </StackPanel>
+
+        <!-- Separador Vertical -->
+        <Rectangle Grid.Column="1" Fill="#E0E0E0" Width="1" HorizontalAlignment="Center"/>
+
+        <!-- Columna Derecha: Búsqueda por ID -->
+        <Grid Grid.Column="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Row="0" Margin="0,0,0,15" Orientation="Horizontal">
+                <TextBlock FontWeight="SemiBold" Margin="0,0,10,0" Text="ID Empleado:" VerticalAlignment="Center"/>
+                <TextBox Height="26" Margin="0,0,10,0" VerticalContentAlignment="Center" Width="90" x:Name="txtStaffId"/>
+                <Button Click="btnBuscar_Click" Content="Buscar" Height="26" Width="70" x:Name="btnBuscar"/>
+            </StackPanel>
+
+            <Separator Grid.Row="1" Margin="0,0,0,15"/>
+
+            <StackPanel Grid.Row="2">
+                <TextBlock Text="Nombre:"/>
+                <TextBox Height="24" IsReadOnly="True" Margin="0,2,0,8" x:Name="txtNombre"/>
+
+                <TextBlock Text="Apellidos:"/>
+                <TextBox Height="24" IsReadOnly="True" Margin="0,2,0,8" x:Name="txtApellidos"/>
+
+                <TextBlock Text="Correo Electrónico:"/>
+                <TextBox Height="24" IsReadOnly="True" Margin="0,2,0,8" x:Name="txtEmail"/>
+
+                <TextBlock Text="Usuario:"/>
+                <TextBox Height="24" IsReadOnly="True" Margin="0,2,0,8" x:Name="txtUsuario"/>
+
+                <TextBlock Text="ID Tienda:"/>
+                <TextBox Height="24" IsReadOnly="True" Margin="0,2,0,8" x:Name="txtStoreId"/>
+
+                <CheckBox Content="Empleado Activo" IsEnabled="False" Margin="0,5,0,0" x:Name="chkActivo"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+
 </Window>
